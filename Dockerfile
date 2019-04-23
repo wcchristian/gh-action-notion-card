@@ -12,6 +12,7 @@ LABEL "maintainer"="Christian Andersen <c.andersen2012@gmail.com>"
 WORKDIR /usr/src/app
 COPY requirements.txt ./
 COPY main.py ./
+RUN ls
 RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["python", "./main.py"]
