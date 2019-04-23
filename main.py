@@ -8,6 +8,9 @@ cardTitle = "This is the title of the github issue"
 cardDescription = "This is the content of the github issue"
 tagList = ["Github Issue", "SomeTag"]
 
+print(token)
+print(collectionUrl)
+
 
 client = NotionClient(token_v2=token)
 cv = client.get_collection_view(collectionUrl)
