@@ -26,4 +26,4 @@ client = NotionClient(token_v2=token)
 cv = client.get_collection_view(collection_url)
 row = cv.collection.add_row()
 row.name = card_title
-row.children.add_new(BookmarkBlock, title=card_title link=card_link)
+row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
