@@ -1,6 +1,7 @@
 from notion.client import NotionClient
 from notion.block import TextBlock
 import sys
+import os
 
 token = os.environ.get("NOTION_TOKEN")
 collectionUrl = os.environ.get("COLLECTION_URL")
