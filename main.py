@@ -2,8 +2,8 @@ from notion.client import NotionClient
 from notion.block import TextBlock
 import sys
 
-token = sys.argv[1]
-collectionUrl = sys.argv[2]
+token = os.environ.get("NOTION_TOKEN")
+collectionUrl = os.environ.get("COLLECTION_URL")
 cardTitle = "This is the title of the github issue"
 cardDescription = "This is the content of the github issue"
 tagList = ["Github Issue", "SomeTag"]
