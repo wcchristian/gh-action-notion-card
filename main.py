@@ -1,25 +1,29 @@
-from notion.client import NotionClient
-from notion.block import TextBlock
-from notion.block import PageBlock
 import sys
 import os
 import json
+from notion.client import NotionClient
+from notion.block import TextBlock
+from notion.block import PageBlock
 
+# Get data from github environment
 path = os.environ.get("GITHUB_EVENT_PATH")
 token = os.environ.get("NOTION_TOKEN")
-collectionUrl = os.environ.get("COLLECTION_URL")
+collection_url = os.environ.get("COLLECTION_URL")
 
+# Load the event from github
 with open(path,"r") as f:
-    contents = f.read()
+    github_event_string = f.read()
 
-githubPayloadJson = json.loads(contents)
+# convert event to json
+github_event_json = json.loads(github_event_string)
 
-cardTitle = githubPayloadJson["issue"]["title"]
-cardDescription = githubPayloadJson["issue"]["url"]
-tagList = ["Github Issue", "SomeTag"]
+# set card title and link from json event
+card_title = github_event_json["issue"]["title"]
+card_link = github_event_json["issue"]["url"]
 
+# add row to notion collection and add a text block with link to the new card
 client = NotionClient(token_v2=token)
-cv = client.get_collection_view(collectionUrl)
+cv = client.get_collection_view(collection_url)
 row = cv.collection.add_row()
-row.name = cardTitle
-row.children.add_new(TextBlock, title=cardDescription)
+row.name = card_title
+row.children.add_new(TextBlock, title=card_link)
