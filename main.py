@@ -2,8 +2,8 @@ import sys
 import os
 import json
 from notion.client import NotionClient
-from notion.block import TextBlock
 from notion.block import PageBlock
+from notion.block import BookmarkBlock
 
 # Get data from github environment
 path = os.environ.get("GITHUB_EVENT_PATH")
@@ -26,4 +26,4 @@ client = NotionClient(token_v2=token)
 cv = client.get_collection_view(collection_url)
 row = cv.collection.add_row()
 row.name = card_title
-row.children.add_new(TextBlock, title=card_link)
+row.children.add_new(BookmarkBlock, link=card_link)
