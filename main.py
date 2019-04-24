@@ -19,7 +19,7 @@ github_event_json = json.loads(github_event_string)
 
 # set card title and link from json event
 card_title = github_event_json["issue"]["title"]
-card_link = github_event_json["issue"]["url"]
+card_link = github_event_json["issue"]["html_url"]
 
 # add row to notion collection and add a text block with link to the new card
 client = NotionClient(token_v2=token)
